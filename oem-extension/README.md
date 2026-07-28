@@ -41,6 +41,14 @@ measurement / leak entry fans out into its own per-sensor key
 schema (see the SONiC platform design doc,
 [pmon-bmc-design.md - DB schema](https://github.com/sonic-net/SONiC/blob/master/doc/bmc/sonicBMC/pmon-bmc-design.md#2121-db-schema)).
 
+> **Severity casing:** Redfish clients send the `SonicSeverity` enum in mixed
+> case (`Normal`/`Minor`/`Major`/`Critical`), but the platform STATE_DB schema
+> and its consumers (`thermalctld`'s `SYSTEM_LEAK_STATUS`, `bmcctld`'s
+> `LEAK_CONTROL_POLICY` dispatch) compare against **upper-case** constants
+> (`NORMAL`/`MINOR`/`CRITICAL`). The bridge therefore normalises every stored
+> `severity`/`leak` value to upper case, so a standards-compliant `Critical`
+> leak alert is recognised rather than silently dropped on a case mismatch.
+
 <sub>[^ Back to Table of Contents](#table-of-contents)</sub>
 
 ---
@@ -156,19 +164,19 @@ Each measurement / leak fans out into its own canonical
 
 ```text
 HGETALL RACK_MANAGER_ALERT|Inlet_liquid_temperature
-  severity  = "Minor"
+  severity  = "MINOR"
   timestamp = "2026-01-01T00:00:00.000000Z"
 
 HGETALL RACK_MANAGER_ALERT|Inlet_liquid_flow_rate
-  severity  = "Minor"
+  severity  = "MINOR"
   timestamp = "2026-01-01T00:00:00.000000Z"
 
 HGETALL RACK_MANAGER_ALERT|Inlet_liquid_pressure
-  severity  = "Major"
+  severity  = "MAJOR"
   timestamp = "2026-01-01T00:00:00.000000Z"
 
 HGETALL RACK_MANAGER_ALERT|Rack_level_leak
-  leak      = "Critical"
+  leak      = "CRITICAL"
   timestamp = "2026-01-01T00:00:00.000000Z"
 ```
 
@@ -216,19 +224,19 @@ keys are identical in shape to the flat form:
 
 ```text
 HGETALL RACK_MANAGER_ALERT|Inlet_liquid_flow_rate
-  severity  = "Major"
+  severity  = "MAJOR"
   timestamp = "2026-01-01T00:00:00.000000Z"
 
 HGETALL RACK_MANAGER_ALERT|Inlet_liquid_temperature
-  severity  = "Major"
+  severity  = "MAJOR"
   timestamp = "2026-01-01T00:00:00.000000Z"
 
 HGETALL RACK_MANAGER_ALERT|Inlet_liquid_pressure
-  severity  = "Major"
+  severity  = "MAJOR"
   timestamp = "2026-01-01T00:00:00.000000Z"
 
 HGETALL RACK_MANAGER_ALERT|Rack_level_leak
-  leak      = "Critical"
+  leak      = "CRITICAL"
   timestamp = "2026-01-01T00:00:00.000000Z"
 ```
 
@@ -274,23 +282,23 @@ Each measurement / leak fans out into its own canonical
 HGETALL RACK_MANAGER_DATA|Inlet_liquid_temperature
   InletTemperature = "16.870000"
   unit             = "C"
-  severity         = "Normal"
+  severity         = "NORMAL"
   timestamp        = "2026-01-01T00:00:00.000000Z"
 
 HGETALL RACK_MANAGER_DATA|Inlet_liquid_flow_rate
   value     = "28"
   unit      = "gallons_per_min"
-  severity  = "Normal"
+  severity  = "NORMAL"
   timestamp = "2026-01-01T00:00:00.000000Z"
 
 HGETALL RACK_MANAGER_DATA|Inlet_liquid_pressure
   value     = "2"
   unit      = "psi"
-  severity  = "Critical"
+  severity  = "CRITICAL"
   timestamp = "2026-01-01T00:00:00.000000Z"
 
 HGETALL RACK_MANAGER_DATA|Rack_level_leak
-  leak      = "Critical"
+  leak      = "CRITICAL"
   timestamp = "2026-01-01T00:00:00.000000Z"
 ```
 
