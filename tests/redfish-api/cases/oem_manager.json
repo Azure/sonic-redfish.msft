@@ -239,7 +239,7 @@
         "wait_for_field": "leak",
         "timeout": 5.0,
         "expected_fields": {
-          "leak":      "Critical",
+          "leak":      "CRITICAL",
           "timestamp": { "exists": true },
           "value":     { "exists": false },
           "unit":      { "exists": false },
@@ -252,7 +252,7 @@
         "expected_fields": {
           "InletTemperature": { "type": "float", "equals": 25.3 },
           "unit":             "C",
-          "severity":         "Major",
+          "severity":         "MAJOR",
           "timestamp":        { "exists": true },
           "rscm_position":    { "exists": false }
         }
@@ -263,7 +263,7 @@
         "expected_fields": {
           "value":     { "type": "float", "equals": 28 },
           "unit":      "gallons_per_min",
-          "severity":  "Normal",
+          "severity":  "NORMAL",
           "timestamp": { "exists": true }
         }
       },
@@ -273,7 +273,7 @@
         "expected_fields": {
           "value":     { "type": "float", "equals": 2 },
           "unit":      "psi",
-          "severity":  "Critical",
+          "severity":  "CRITICAL",
           "timestamp": { "exists": true }
         }
       }
@@ -317,7 +317,7 @@
         "key": "RACK_MANAGER_ALERT|Rack_level_leak",
         "wait_for_field": "leak",
         "expected_fields": {
-          "leak":      "Critical",
+          "leak":      "CRITICAL",
           "timestamp": { "exists": true }
         }
       },
@@ -325,7 +325,7 @@
         "db": "state_db",
         "key": "RACK_MANAGER_ALERT|Inlet_liquid_temperature",
         "expected_fields": {
-          "severity":      "Minor",
+          "severity":      "MINOR",
           "timestamp":     { "exists": true },
           "value":         { "exists": false },
           "unit":          { "exists": false },
@@ -336,7 +336,7 @@
         "db": "state_db",
         "key": "RACK_MANAGER_ALERT|Inlet_liquid_flow_rate",
         "expected_fields": {
-          "severity":  "Minor",
+          "severity":  "MINOR",
           "timestamp": { "exists": true },
           "value":     { "exists": false },
           "unit":      { "exists": false }
@@ -346,7 +346,7 @@
         "db": "state_db",
         "key": "RACK_MANAGER_ALERT|Inlet_liquid_pressure",
         "expected_fields": {
-          "severity":  "Major",
+          "severity":  "MAJOR",
           "timestamp": { "exists": true },
           "value":     { "exists": false },
           "unit":      { "exists": false }
@@ -389,7 +389,7 @@
         "key": "RACK_MANAGER_ALERT|Rack_level_leak",
         "wait_for_field": "leak",
         "expected_fields": {
-          "leak":      "Critical",
+          "leak":      "CRITICAL",
           "timestamp": { "exists": true }
         }
       },
@@ -397,7 +397,7 @@
         "db": "state_db",
         "key": "RACK_MANAGER_ALERT|Inlet_liquid_flow_rate",
         "expected_fields": {
-          "severity":  "Major",
+          "severity":  "MAJOR",
           "timestamp": { "exists": true },
           "value":     { "exists": false }
         }
@@ -406,7 +406,7 @@
         "db": "state_db",
         "key": "RACK_MANAGER_ALERT|Inlet_liquid_temperature",
         "expected_fields": {
-          "severity":  "Major",
+          "severity":  "MAJOR",
           "timestamp": { "exists": true },
           "value":     { "exists": false }
         }
@@ -415,7 +415,7 @@
         "db": "state_db",
         "key": "RACK_MANAGER_ALERT|Inlet_liquid_pressure",
         "expected_fields": {
-          "severity":  "Major",
+          "severity":  "MAJOR",
           "timestamp": { "exists": true },
           "value":     { "exists": false }
         }
