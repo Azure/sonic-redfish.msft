@@ -7,7 +7,7 @@
 # Author: Chinmoy Dey <chinmoy@nexthop.ai>
 # License file: sonic-redfish/LICENSE
 #######################################
-
+# dummy change
 # Makefile for sonic-redfish
 .ONESHELL:
 SHELL = /bin/bash
